@@ -32,9 +32,17 @@ export default function App() {
     });
   }
 
+  function createUserSubmission() {
+    const preferredDates = window.prompt("Preferred dates (comma separated)").split(",");
+    client.models.User.create({
+      name: name,
+      preferredDates: preferredDates,
+    });
+  }
+
   return (
     <main>
-      <h1>My todos</h1>
+      <h1>Kon lädt ein zu seinem 27. Burtseltag</h1>
       <div>
         <label htmlFor="name">Wer bist du: </label>
         <input
@@ -44,9 +52,9 @@ export default function App() {
           onChange={(e) => setName(e.target.value)}
           placeholder="Dein Name"
         />
-        <p>Servus, {name || ""}!</p>
+        <p>Servus, {name || "unbekannter"}!</p>
       </div>
-      <button onClick={createTodo}>+ new</button>
+      <button onClick={createUserSubmission}>+ new</button>
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.content}</li>
