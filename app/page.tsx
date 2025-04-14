@@ -14,7 +14,7 @@ const client = generateClient<Schema>();
 
 export default function App() {
   const [name, setName] = useState<string>("");
-  const [preferredDates, setPreferredDates] = useState<string[]>([]);
+  const [preferredDates, setPreferredDates] = useState<string>("");
 
 
   function createUserSubmission() {
@@ -40,7 +40,7 @@ export default function App() {
           id="dates"
           type="text"
           value={name}
-          onChange={(e) => setPreferredDates(e.target.value.split(","))}
+          onChange={(e) => setPreferredDates(e.target.value)}
           placeholder="Deine Wunschtermine (Komma getrennt)"
         />
         <p>Servus, {name || "unbekannter"}!</p>

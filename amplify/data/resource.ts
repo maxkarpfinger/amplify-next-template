@@ -4,7 +4,7 @@ const schema = a.schema({
   User: a
     .model({
       name: a.string(),
-      preferredDates: a.array(a.string()), // Use `array` if `list` is not available
+      preferredDates: a.string(), // Use `array` if `list` is not available
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });
