@@ -7,6 +7,7 @@ import "./../app/app.css";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
+import Head from "next/head";
 
 Amplify.configure(outputs);
 
@@ -31,17 +32,29 @@ export default function App() {
   }
 
   function createUserSubmission() {
-    if (!name || preferredDates.length === 0) {
-      alert("Bitte Namen und Wunschtermine eingeben.");
+    if (!name) {
+      alert("Bitte Namen eingeben.");
       return;
     }
+    
     client.models.User.create({
       name: name,
       preferredDates: preferredDates.join(","),
     });
+    
+    if (preferredDates.length === 0) {
+      alert("Sehr schade!");
+    } else {
+      alert(`Danke ${name}, dass du mir deine Wunschtermine mitgeteilt hast!`);
+    }
   }
 
   return (
+    <>
+    <Head>
+        <title>Kon's 27th Birthday Invitation</title> {}
+        <meta name="description" content="Kon lädt zu seinem 27. Geburtstag ein!" />
+    </Head>
     <main className="container">
       <h1 className="title">Kon lädt zu seinem 27. Burtseltag ein</h1>
       <div className="form-group">
@@ -78,10 +91,11 @@ export default function App() {
           Deine Wunschtermine: {preferredDates.join(", ") || "Keine ausgewählt"}
         </p>
       </div>
-      <button onClick={createUserSubmission} className="button">+ new</button>
+      <button onClick={createUserSubmission} className="button">Und Los!</button> 
       <div className="footer">
         🥳 Ich freue mich auf dich!
       </div>
     </main>
+    </>
   );
 }
