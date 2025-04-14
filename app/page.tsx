@@ -14,6 +14,7 @@ const client = generateClient<Schema>();
 
 export default function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [name, setName] = useState<string>("");
 
   function listTodos() {
     client.models.Todo.observeQuery().subscribe({
@@ -34,6 +35,17 @@ export default function App() {
   return (
     <main>
       <h1>My todos</h1>
+      <div>
+        <label htmlFor="name">Wer bist du: </label>
+        <input
+          id="name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Dein Name"
+        />
+        <p>Servus, {name || ""}!</p>
+      </div>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
@@ -43,9 +55,6 @@ export default function App() {
       <div>
         🥳 App successfully hosted. Try creating a new todo.
         <br />
-        <a href="https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/">
-          Review next steps of this tutorial.
-        </a>
       </div>
     </main>
   );
