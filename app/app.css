@@ -222,8 +222,14 @@ a {
     color: #333;
 }
 
+.user-table-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
 .user-table {
     width: 100%;
+    min-width: 600px; /* Ensure the table doesn't shrink too much */
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 16px;
