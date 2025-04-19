@@ -24,7 +24,7 @@ export default function AdminPage() {
   const [newPassword, setNewPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isPasswordResetRequired, setIsPasswordResetRequired] = useState<boolean>(false);
-  const [users, setUsers] = useState<Array<{ name: string; preferredDates: string }>>([]);
+  const [users, setUsers] = useState<Array<{ name: string; preferredDates: string, id: string }>>([]);
 
   // Calculate percentages for each date
   const totalUsers = users.length;
@@ -54,7 +54,7 @@ export default function AdminPage() {
         return;
       }
       const user = await Auth.signIn({ username, password }) as any;
-      if (user?.challengeName === "NEW_PASSWORD_REQUIRED") {
+      if (user?.challengeName === "FORCE_CHANGE_PASSWORD") {
         alert("New password required. Please set a new password.");
         setIsPasswordResetRequired(true); // Prompt for new password
       } else {
@@ -93,6 +93,7 @@ if (error instanceof Error) {
       const userList = response.data.map((user: any) => ({
         name: user.name,
         preferredDates: user.preferredDates.join(", "),
+        id: user.id,
       }));
       setUsers(userList);
     })
@@ -101,10 +102,19 @@ if (error instanceof Error) {
     }
   }
 
-  function handleDeleteUser(index: number) {
-    const updatedUsers = [...users];
-    updatedUsers.splice(index, 1);
-    setUsers(updatedUsers);
+  async function handleDeleteUser(index: number) {
+    const userToDelete = users[index];
+    try {
+      await client.models.User.delete({ id: userToDelete.id });
+
+      const updatedUsers = [...users];
+      updatedUsers.splice(index, 1);
+      setUsers(updatedUsers);
+      alert(`User ${userToDelete.name} deleted successfully.`);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      alert("Failed to delete user. Please try again.");
+    }
   }
 
   return (
