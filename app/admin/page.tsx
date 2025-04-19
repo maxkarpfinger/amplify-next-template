@@ -92,6 +92,7 @@ export default function AdminPage() {
       <main className="container">
           <div>
             <h1 className="title">Die Wappler</h1>
+            <button className="login-button" onClick={handleLogin}/>
             {users.length > 0 ? (
               <>
                 <div className="charts-container">
