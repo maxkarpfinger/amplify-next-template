@@ -4,11 +4,19 @@ import { useState } from "react";
 import Auth from "@aws-amplify/auth";
 import Head from "next/head";
 import "./../../app/app.css";
+import { generateClient } from "aws-amplify/data";
+import { Amplify } from "aws-amplify";
+import type { Schema } from "@/amplify/data/resource";
+import outputs from "@/amplify_outputs.json";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
+
+Amplify.configure(outputs);
+
+const client = generateClient<Schema>();
 
 export default function AdminPage() {
   const [username, setUsername] = useState<string>("");
@@ -81,11 +89,13 @@ if (error instanceof Error) {
 
   async function fetchUserData() {
     try {
-      const userList = [
-        { name: "User1", preferredDates: "2025-06-20, 2025-06-21" },
-        { name: "User2", preferredDates: "2025-06-27" },
-      ];
+      client.models.User.list({}).then((response) => {
+      const userList = response.data.map((user: any) => ({
+        name: user.name,
+        preferredDates: user.preferredDates.join(", "),
+      }));
       setUsers(userList);
+    })
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
