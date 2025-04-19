@@ -86,7 +86,7 @@ export default function AdminPage() {
   async function handleNewPassword() {
     try {
       const user = await Auth.signIn({ username, password }) as any;
-      await Auth.completeNewPassword(user, newPassword); // Complete the new password flow
+      //await Auth.completeNewPassword(user, newPassword); // Complete the new password flow
       setPassword(""); // Clear the password field
       setNewPassword(""); // Clear the new password field
     } catch (error) {
