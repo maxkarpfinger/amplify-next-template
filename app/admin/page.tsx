@@ -46,11 +46,11 @@ export default function AdminPage() {
   });
 
   async function handleLogin() {
-    if (username === "test") {
+    //if (username === "test") {
       setIsLoggedIn(true);
       fetchUserData();
-      return;
-    }
+    //  return;
+    //}
   }
 
   async function fetchUserData() {
@@ -92,7 +92,7 @@ export default function AdminPage() {
       <main className="container">
           <div>
             <h1 className="title">Die Wappler</h1>
-            <button className="login-button" onClick={handleLogin}/>
+            <button className="login-button" onClick={handleLogin}>Durchzählen</button>
             {users.length > 0 ? (
               <>
                 <div className="charts-container">
