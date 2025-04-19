@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Auth from "@aws-amplify/auth";
 import Head from "next/head";
 import "./../../app/app.css";
 import { generateClient } from "aws-amplify/data";
@@ -10,6 +9,7 @@ import type { Schema } from "@/amplify/data/resource";
 import outputs from "@/amplify_outputs.json";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import '@aws-amplify/ui-react/styles.css';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -20,22 +20,9 @@ const client = generateClient<Schema>();
 
 type DateKey = "2025-06-20" | "2025-06-21" | "2025-06-27" | "2025-06-28";
 
-const myObject: Record<DateKey, number> = {
-  "2025-06-20": 1,
-  "2025-06-21": 2,
-  "2025-06-27": 3,
-  "2025-06-28": 4,
-};
-
-const dateKey: DateKey = "2025-06-20";
-const value = myObject[dateKey]; // No error, because `dateKey` is guaranteed to be a valid key.
-
 export default function AdminPage() {
   const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [newPassword, setNewPassword] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [isPasswordResetRequired, setIsPasswordResetRequired] = useState<boolean>(false);
   const [users, setUsers] = useState<Array<{ name: string; preferredDates: string, id: string }>>([]);
 
   // Calculate percentages for each date
@@ -59,43 +46,10 @@ export default function AdminPage() {
   });
 
   async function handleLogin() {
-    try {
-      if (username === "test") {
-        setIsLoggedIn(true);
-        fetchUserData();
-        return;
-      }
-      const user = await Auth.signIn({ username, password }) as any;
-      if (user?.challengeName === "FORCE_CHANGE_PASSWORD") {
-        alert("New password required. Please set a new password.");
-        setIsPasswordResetRequired(true); // Prompt for new password
-      } else {
+    if (username === "test") {
       setIsLoggedIn(true);
       fetchUserData();
-}
-    } catch (error) {
-      console.error("Login failed:", error);
-      if (error instanceof Error) {
-        alert(`Login failed: ${error.message}`);
-      } else {
-        alert("Login failed: An unknown error occurred.");
-      }
-    }
-  }
-
-  async function handleNewPassword() {
-    try {
-      const user = await Auth.signIn({ username, password }) as any;
-      //await Auth.completeNewPassword(user, newPassword); // Complete the new password flow
-      setPassword(""); // Clear the password field
-      setNewPassword(""); // Clear the new password field
-    } catch (error) {
-      console.error("Password reset failed:", error);
-if (error instanceof Error) {
-      alert(`Password reset failed: ${error.message}`);
-      } else {
-        alert("Password reset failed: An unknown error occurred.");
-      }
+      return;
     }
   }
 
@@ -136,46 +90,6 @@ if (error instanceof Error) {
         <meta name="description" content="Admin login page to view user preferred dates." />
       </Head>
       <main className="container">
-        {!isLoggedIn ? (
-          <div className="form-group">
-            <h1 className="title">Admin Login</h1>
-            <label htmlFor="username" className="label">Username:</label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter admin username"
-              className="input"
-            />
-            <label htmlFor="password" className="label">Password:</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter admin password"
-              className="input"
-            />
-{isPasswordResetRequired && (
-              <>
-                <label htmlFor="newPassword" className="label">New Password:</label>
-                <input
-                  id="newPassword"
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Enter new password"
-                  className="input"
-                />
-                <button onClick={handleNewPassword} className="button">Set New Password</button>
-              </>
-            )}
-            {!isPasswordResetRequired && (
-            <button onClick={handleLogin} className="button">Login</button>
-)}
-          </div>
-        ) : (
           <div>
             <h1 className="title">Die Wappler</h1>
             {users.length > 0 ? (
@@ -198,7 +112,7 @@ if (error instanceof Error) {
                     <Doughnut data={chartData("2025-06-28")} />
                   </div>
                 </div>
-                <table className="user-table">
+<table className="user-table">
   <thead>
     <tr>
       <th>Name</th>
@@ -237,7 +151,6 @@ if (error instanceof Error) {
               <p>No user data available.</p>
             )}
           </div>
-        )}
       </main>
     </>
   );
