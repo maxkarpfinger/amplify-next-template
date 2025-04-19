@@ -18,6 +18,18 @@ Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
 
+type DateKey = "2025-06-20" | "2025-06-21" | "2025-06-27" | "2025-06-28";
+
+const myObject: Record<DateKey, number> = {
+  "2025-06-20": 1,
+  "2025-06-21": 2,
+  "2025-06-27": 3,
+  "2025-06-28": 4,
+};
+
+const dateKey: DateKey = "2025-06-20";
+const value = myObject[dateKey]; // No error, because `dateKey` is guaranteed to be a valid key.
+
 export default function AdminPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -28,14 +40,14 @@ export default function AdminPage() {
 
   // Calculate percentages for each date
   const totalUsers = users.length;
-  const dateCounts = {
+  const dateCounts: Record<DateKey, number> = {
     "2025-06-20": users.filter((user) => user.preferredDates.includes("2025-06-20")).length,
     "2025-06-21": users.filter((user) => user.preferredDates.includes("2025-06-21")).length,
     "2025-06-27": users.filter((user) => user.preferredDates.includes("2025-06-27")).length,
     "2025-06-28": users.filter((user) => user.preferredDates.includes("2025-06-28")).length,
   };
 
-  const chartData = (date: string) => ({
+  const chartData = (date: DateKey) => ({
     labels: ["dabei", "fehlen"],
     datasets: [
       {
