@@ -55,20 +55,18 @@ export default function AdminPage() {
 
   async function fetchUserData() {
     try {
-      const subscription = client.models.User.observeQuery().subscribe({
-        next: (response) => {
-          const userList = response.items.map((user: any) => ({
-            name: user.name,
-            preferredDates: user.preferredDates.join(", "),
-            id: user.id,
-          }));
-          setUsers(userList);
-        },
-        error: (error) => {
-          console.error("Error observing user data:", error);
-        },
-      });
-      return subscription;
+      const response = await client.models.User.list();
+      console.log("Fetched user data:", response);
+      if (!response || !response.data) {
+        console.error("No user data found.");
+        return;
+      }
+      const userList = response.data.map((user: any) => ({
+        name: user.name,
+        preferredDates: user.preferredDates.join(", "),
+        id: user.id,
+      }));
+      setUsers(userList);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
