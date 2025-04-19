@@ -63,7 +63,7 @@ export default function AdminPage() {
       }
       const userList = response.data.map((user: any) => ({
         name: user.name,
-        preferredDates: user.preferredDates.join(", "),
+        preferredDates: user.preferredDates,
         id: user.id,
       }));
       setUsers(userList);
