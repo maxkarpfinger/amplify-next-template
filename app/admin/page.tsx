@@ -130,7 +130,7 @@ export default function AdminPage() {
   </thead>
   <tbody>
     {users.map((user, index) => {
-      const preferredDates = user.preferredDates.split(", ");
+      const preferredDates = user.preferredDates.split(",");
       return (
         <tr key={index}>
           <td>{user.name}</td>

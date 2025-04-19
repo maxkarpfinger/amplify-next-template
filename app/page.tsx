@@ -88,7 +88,7 @@ export default function App() {
           ))}
         </div>  
         <p className="summary">
-          Deine Wunschtermine: {preferredDates.join(", ") || "Keine ausgewählt"}
+          Deine Wunschtermine: {preferredDates.join(",") || "Keine ausgewählt"}
         </p>
       </div>
       <button onClick={createUserSubmission} className="button">Und Los!</button> 
