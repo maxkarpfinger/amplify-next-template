@@ -43,7 +43,7 @@ export default function App() {
     });
     
     if (preferredDates.length === 0) {
-      alert("Sehr schade!");
+      alert(`Sehr schade ${name}!`);
     } else {
       alert(`Danke ${name}, dass du mir deine Wunschtermine mitgeteilt hast!`);
     }
