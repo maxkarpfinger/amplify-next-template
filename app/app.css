@@ -14,8 +14,8 @@ main {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    max-width: 100%; /* Allow the container to expand to fit the table */
-    width: 100%;
+    max-width: 80%; /* Allow the container to expand to fit the table */
+    width: 80%;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
@@ -224,15 +224,15 @@ a {
 }
 
 .user-table-container {
-    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-x: auto; /* Enable horizontal scrolling for the table */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .user-table {
-    width: 100%;
-    min-width: 600px; /* Ensure the table doesn't shrink too much */
+    width: 100%; /* Ensure the table fits within the container */
+    max-width: 800px; /* Limit the table's maximum width */
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 0 auto; /* Center the table within the container */
     font-size: 16px;
     text-align: left;
 }
@@ -263,6 +263,11 @@ a {
 }
 
 .container {
-    padding: 20px; /* Add padding to the container */
-    margin-top: 20px; /* Ensure space at the top */
+    padding: 20px;
+    margin: 20px auto; /* Center the container horizontally */
+    max-width: 80%; /* Limit the container width to 80% of the viewport */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
 }
