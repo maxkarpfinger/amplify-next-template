@@ -14,13 +14,14 @@ main {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    max-width: 600px;
+    max-width: 100%; /* Allow the container to expand to fit the table */
     width: 100%;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 20px; /* Add margin to ensure content is not cut off */
+    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
 }
 
 h1.title {
