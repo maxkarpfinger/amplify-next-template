@@ -85,19 +85,8 @@ export default function AdminPage() {
 
   return (
     <>
-      <Authenticator usernameAlias="username" loginMechanisms={['username']} signUpAttributes={['email']} hideSignUp={true}>
-        {({ signOut }) => {
-          fetchUserData
-          return (<div className="admin-container">
-            <h1 className="admin-title">Admin Dashboard</h1>
-            <button className="logout-button" onClick={signOut}>Logout</button>
-          </div>);
-        }}
-      <Head>
-        <title>Admin Login</title>
-        <meta name="description" content="Admin login page to view user preferred dates." />
-      </Head>
       <main className="container">
+      <Authenticator usernameAlias="username" loginMechanisms={['username']} signUpAttributes={['email']} hideSignUp={true}>
           <div>
             <h1 className="title">Die Wappler</h1>
             <button className="login-button" onClick={handleLogin}>Durchzählen</button>
@@ -160,8 +149,8 @@ export default function AdminPage() {
               <p>No user data available.</p>
             )}
           </div>
+          </Authenticator>
       </main>
-      </Authenticator>
     </>
   );
 }
