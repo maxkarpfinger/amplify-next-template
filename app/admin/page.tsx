@@ -86,7 +86,7 @@ export default function AdminPage() {
   return (
     <>
       <main className="container">
-      <Authenticator usernameAlias="username" loginMechanisms={['username']} signUpAttributes={['email']} hideSignUp={true}>
+      <Authenticator loginMechanisms={['username']} signUpAttributes={['email']} hideSignUp={true}>
           <div>
             <h1 className="title">Die Wappler</h1>
             <button className="login-button" onClick={handleLogin}>Durchzählen</button>
