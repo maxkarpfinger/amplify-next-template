@@ -45,6 +45,8 @@ export default function AdminPage() {
     ],
   });
 
+  fetchUserData();
+
   async function handleLogin() {
     //if (username === "test") {
       setIsLoggedIn(true);
