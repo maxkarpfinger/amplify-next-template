@@ -10,6 +10,7 @@ import outputs from "@/amplify_outputs.json";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import '@aws-amplify/ui-react/styles.css';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -21,8 +22,6 @@ const client = generateClient<Schema>();
 type DateKey = "2025-06-20" | "2025-06-21" | "2025-06-27" | "2025-06-28";
 
 export default function AdminPage() {
-  const [username, setUsername] = useState<string>("");
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [users, setUsers] = useState<Array<{ name: string; preferredDates: string, id: string }>>([]);
 
   // Calculate percentages for each date
@@ -45,14 +44,9 @@ export default function AdminPage() {
     ],
   });
 
-  fetchUserData();
 
   async function handleLogin() {
-    //if (username === "test") {
-      setIsLoggedIn(true);
       fetchUserData();
-    //  return;
-    //}
   }
 
   async function fetchUserData() {
@@ -91,6 +85,14 @@ export default function AdminPage() {
 
   return (
     <>
+      <Authenticator usernameAlias="username" loginMechanisms={['username']} signUpAttributes={['email']} hideSignUp={true}>
+        {({ signOut }) => {
+          fetchUserData
+          return (<div className="admin-container">
+            <h1 className="admin-title">Admin Dashboard</h1>
+            <button className="logout-button" onClick={signOut}>Logout</button>
+          </div>);
+        }}
       <Head>
         <title>Admin Login</title>
         <meta name="description" content="Admin login page to view user preferred dates." />
@@ -159,6 +161,7 @@ export default function AdminPage() {
             )}
           </div>
       </main>
+      </Authenticator>
     </>
   );
 }
