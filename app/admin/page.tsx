@@ -19,7 +19,7 @@ Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
 
-type DateKey = "2025-06-20" | "2025-06-21" | "2025-06-27" | "2025-06-28";
+type DateKey = "2025-07-18" | "2025-07-19" | "2025-08-01" | "2025-08-02";
 
 export default function AdminPage() {
   const [users, setUsers] = useState<Array<{ name: string; preferredDates: string, id: string }>>([]);
@@ -27,10 +27,10 @@ export default function AdminPage() {
   // Calculate percentages for each date
   const totalUsers = users.length;
   const dateCounts: Record<DateKey, number> = {
-    "2025-06-20": users.filter((user) => user.preferredDates.includes("2025-06-20")).length,
-    "2025-06-21": users.filter((user) => user.preferredDates.includes("2025-06-21")).length,
-    "2025-06-27": users.filter((user) => user.preferredDates.includes("2025-06-27")).length,
-    "2025-06-28": users.filter((user) => user.preferredDates.includes("2025-06-28")).length,
+    "2025-07-18": users.filter((user) => user.preferredDates.includes("2025-07-18")).length,
+    "2025-07-19": users.filter((user) => user.preferredDates.includes("2025-07-19")).length,
+    "2025-08-01": users.filter((user) => user.preferredDates.includes("2025-08-01")).length,
+    "2025-08-02": users.filter((user) => user.preferredDates.includes("2025-08-02")).length,
   };
 
   const chartData = (date: DateKey) => ({
@@ -95,29 +95,29 @@ export default function AdminPage() {
                 <div className="charts-container">
                   <div className="chart">
                     <h3>20. Juni 2025</h3>
-                    <Doughnut data={chartData("2025-06-20")} />
+                    <Doughnut data={chartData("2025-07-18")} />
                   </div>
                   <div className="chart">
                     <h3>21. Juni 2025</h3>
-                    <Doughnut data={chartData("2025-06-21")} />
+                    <Doughnut data={chartData("2025-07-19")} />
                   </div>
                   <div className="chart">
                     <h3>27. Juni 2025</h3>
-                    <Doughnut data={chartData("2025-06-27")} />
+                    <Doughnut data={chartData("2025-08-01")} />
                   </div>
                   <div className="chart">
                     <h3>28. Juni 2025</h3>
-                    <Doughnut data={chartData("2025-06-28")} />
+                    <Doughnut data={chartData("2025-08-02")} />
                   </div>
                 </div>
 <table className="user-table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>20. Juni</th>
-      <th>21. Juni</th>
-      <th>27. Juni</th>
-      <th>28. Juni</th>
+      <th>18. Juli</th>
+      <th>19. Juli</th>
+      <th>01. August</th>
+      <th>02. August</th>
       <th>Aktionen</th>
     </tr>
   </thead>
@@ -127,10 +127,10 @@ export default function AdminPage() {
       return (
         <tr key={index}>
           <td>{user.name}</td>
-          <td>{preferredDates.includes("2025-06-20") ? "✔️" : "❌"}</td>
-          <td>{preferredDates.includes("2025-06-21") ? "✔️" : "❌"}</td>
-          <td>{preferredDates.includes("2025-06-27") ? "✔️" : "❌"}</td>
-          <td>{preferredDates.includes("2025-06-28") ? "✔️" : "❌"}</td>
+          <td>{preferredDates.includes("2025-07-18") ? "✔️" : "❌"}</td>
+          <td>{preferredDates.includes("2025-07-19") ? "✔️" : "❌"}</td>
+          <td>{preferredDates.includes("2025-08-01") ? "✔️" : "❌"}</td>
+          <td>{preferredDates.includes("2025-08-02") ? "✔️" : "❌"}</td>
           <td>
             <button
               className="delete-button"
