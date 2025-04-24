@@ -94,19 +94,19 @@ export default function AdminPage() {
               <>
                 <div className="charts-container">
                   <div className="chart">
-                    <h3>20. Juni 2025</h3>
+                    <h3>18. Juli 2025</h3>
                     <Doughnut data={chartData("2025-07-18")} />
                   </div>
                   <div className="chart">
-                    <h3>21. Juni 2025</h3>
+                    <h3>19. Juli 2025</h3>
                     <Doughnut data={chartData("2025-07-19")} />
                   </div>
                   <div className="chart">
-                    <h3>27. Juni 2025</h3>
+                    <h3>01. August 2025</h3>
                     <Doughnut data={chartData("2025-08-01")} />
                   </div>
                   <div className="chart">
-                    <h3>28. Juni 2025</h3>
+                    <h3>02. August 2025</h3>
                     <Doughnut data={chartData("2025-08-02")} />
                   </div>
                 </div>
