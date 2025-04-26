@@ -41,8 +41,54 @@ export default function App() {
       name: name,
       preferredDates: preferredDates.join(","),
     });
-    
-    if (preferredDates.length === 0) {
+
+    if (name.toLocaleLowerCase().includes("aaron")) {
+      alert("Scheiß mal aufs Festival, Happiness kriegst du auch bei mir");
+    } else if (name.toLocaleLowerCase().includes("bene")) { 
+      alert("Ich misch dir auch nen Fernet Fanta");
+    } else if (name.toLocaleLowerCase().includes("calvin")) {
+      alert("Letzte Chance, diesmal muss es klappen");
+    } else if (name.toLocaleLowerCase().includes("caro")) {
+      alert("Nimm Trichter mit");
+    } else if (name.toLocaleLowerCase().includes("chris")) {
+      alert("Aber nicht wieder im Wohnzimmer einen anhauen");
+    } else if (name.toLocaleLowerCase().includes("dani")) {
+      alert("Wenn du nicht kommst gibt's keine Cookies dieses Jahr");
+    } else if (name.toLocaleLowerCase().includes("eli")) {
+      alert("Wenn du Bochum singst wirst von den Bayern-Fans verprügelt");
+    } else if (name.toLocaleLowerCase().includes("fabi")) {
+      alert("Drei Bier vor Vier");
+    } else if (name.toLocaleLowerCase().includes("felix")) {
+      alert("Mach mal nicht den Felix");
+    } else if (name.toLocaleLowerCase().includes("gabriel")) {
+      alert("Praktisch, kannst das Geschenk vom letztem Jahr nochmal verwenden");
+    } else if (name.toLocaleLowerCase().includes("gerhard")) {
+      alert("bist du bis dahin auch schon Professor?")
+    } else if (name.toLocaleLowerCase().includes("henry")) {
+      alert("Mach kein Auge");
+    } else if (name.toLocaleLowerCase().includes("janina")) {
+      alert("Diesmal musst du kommen, sonst kann ich deine ganzen Freunde (Flo) nicht so gut einladen");
+    } else if (name.toLocaleLowerCase().includes("konstantin")) {
+      alert("Da lohnt sich jeder Kilometer!");
+    } else if (name.toLocaleLowerCase().includes("laura")) {
+      alert("Lohnt sich auch zum Meilensammeln");
+    } else if (name.toLocaleLowerCase().includes("madita")) {
+      alert("Diesmal das Elotrans lieber vorher nehmen");
+    } else if (name.toLocaleLowerCase().includes("maxl")) {
+      alert("Ehrenmann");
+    } else if (name.toLocaleLowerCase().includes("sascha")) {
+      alert("Aber nicht wieder ins Eck kotzen");
+    } else if (name.toLocaleLowerCase().includes("sophie")) {
+      alert("Bring deinen Stecher mit");
+    } else if (name.toLocaleLowerCase().includes("tassilo")) {
+      alert("Ich misch dir auch nen Fernet Fanta");
+    } else if (name.toLocaleLowerCase().includes("thimo")) {
+      alert("Egal ob du kannst, aber bring ne Marlboro Gold mit");
+    } else if (name.toLocaleLowerCase().includes("van")) {
+      alert("Aber dann auch mindestens bis 6 wach bleiben");
+    } else if (name.toLocaleLowerCase().includes("victor")) {
+      alert("Warum nicht alle 8 Vornamen angegeben?")
+    } else if (preferredDates.length === 0) {
       alert(`Sehr schade ${name}!`);
     } else {
       alert(`Danke ${name}, dass du mir deine Wunschtermine mitgeteilt hast!`);
