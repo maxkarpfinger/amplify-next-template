@@ -16,6 +16,7 @@ const client = generateClient<Schema>();
 export default function App() {
   const [name, setName] = useState<string>("");
   const [preferredDates, setPreferredDates] = useState<string[]>([]);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false); // State to track submission
 
   const dates = [
     { value: "2025-07-18", label: "18. Juli" },
@@ -36,7 +37,7 @@ export default function App() {
       alert("Bitte Namen eingeben.");
       return;
     }
-    
+
     client.models.User.create({
       name: name,
       preferredDates: preferredDates.join(","),
@@ -93,58 +94,67 @@ export default function App() {
     } else {
       alert(`Danke ${name}, dass du mir deine Wunschtermine mitgeteilt hast!`);
     }
+
+    setIsSubmitted(true); // Mark submission as completed
   }
 
   return (
     <>
-    <Head>
-        <title>Kon's 27th Birthday Invitation</title> {}
+      <Head>
+        <title>Kon's 27th Birthday Invitation</title>
         <meta name="description" content="Kon lädt zu seinem 27. Geburtstag ein!" />
-    </Head>
-    <main className="container">
-      <div className="special-banner">
-        🎉💃🍾 10 Jahre Turn-Up Special !!! 🍾🕺🎉
-      </div>
-      <h1 className="title">Kon lädt zu seinem 27. Burtseltag ein</h1>
-      <div className="form-group">
-        <label htmlFor="name" className="label">Wer bist du:</label>
-        <input
-          id="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Dein Name"
-          className="input"
-        />
-        <label className="label">Wann kannst du:</label>
-        <div className="checkbox-group">
-          {dates.map((date) => (
-            <label
-              key={date.value}
-              className={`checkbox-label ${
-                preferredDates.includes(date.value) ? "selected" : ""
-              }`}
-            >
-              <input
-                type="checkbox"
-                value={date.value}
-                checked={preferredDates.includes(date.value)}
-                onChange={handleDateChange}
-                className="checkbox-input"
-              />
-              {date.label}
-            </label>
-          ))}
-        </div>  
-        <p className="summary">
-          Deine Wunschtermine: {preferredDates.join(",") || "Keine ausgewählt"}
-        </p>
-      </div>
-      <button onClick={createUserSubmission} className="button">Und Los!</button> 
-      <div className="footer">
-        🥳 Ich freue mich auf dich!
-      </div>
-    </main>
+      </Head>
+      <main className="container">
+        <div className="special-banner">
+          🎉💃🍾 10 Jahre Turn-Up Special !!! 🍾🕺🎉
+        </div>
+        <h1 className="title">Kon lädt zu seinem 27. Burtseltag ein</h1>
+        <div className="form-group">
+          <label htmlFor="name" className="label">Wer bist du:</label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Dein Name"
+            className="input"
+          />
+          <label className="label">Wann kannst du:</label>
+          <div className="checkbox-group">
+            {dates.map((date) => (
+              <label
+                key={date.value}
+                className={`checkbox-label ${
+                  preferredDates.includes(date.value) ? "selected" : ""
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  value={date.value}
+                  checked={preferredDates.includes(date.value)}
+                  onChange={handleDateChange}
+                  className="checkbox-input"
+                />
+                {date.label}
+              </label>
+            ))}
+          </div>
+          <p className="summary">
+            Deine Wunschtermine: {preferredDates.join(",") || "Keine ausgewählt"}
+          </p>
+        </div>
+        {!isSubmitted && (
+          <button onClick={createUserSubmission} className="button">
+            Und Los!
+          </button>
+        )}
+        {isSubmitted && (
+          <p className="thank-you-message">Danke für das Bescheidgeben!</p>
+        )}
+        <div className="footer">
+          🥳 Ich freue mich auf dich!
+        </div>
+      </main>
     </>
   );
 }
