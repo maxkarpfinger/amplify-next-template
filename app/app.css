@@ -271,3 +271,25 @@ a {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow-x: auto; /* Enable horizontal scrolling if content overflows */
 }
+
+.special-banner {
+    background-color: rgb(200, 170, 255);
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }

@@ -102,6 +102,9 @@ export default function App() {
         <meta name="description" content="Kon lädt zu seinem 27. Geburtstag ein!" />
     </Head>
     <main className="container">
+      <div className="special-banner">
+        🎉💃🍾 10 Jahre Turn-Up Special !!! 🍾🕺🎉
+      </div>
       <h1 className="title">Kon lädt zu seinem 27. Burtseltag ein</h1>
       <div className="form-group">
         <label htmlFor="name" className="label">Wer bist du:</label>
