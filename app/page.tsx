@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 import "./../app/app.css";
@@ -50,14 +49,10 @@ export default function App() {
     }
   }
 
-  useEffect(() => {
-    document.title = "Kon feiert sich";
-  }, []);
-
   return (
     <>
     <Head>
-        <title>{document.title}</title>
+        <title>Kon's 27th Birthday Invitation</title> {}
         <meta name="description" content="Kon lädt zu seinem 27. Geburtstag ein!" />
     </Head>
     <main className="container">
