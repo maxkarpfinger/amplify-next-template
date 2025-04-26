@@ -18,10 +18,10 @@ export default function App() {
   const [preferredDates, setPreferredDates] = useState<string[]>([]);
 
   const dates = [
-    { value: "2025-07-18", label: "18. Juli 2025" },
-    { value: "2025-07-19", label: "19. Juli 2025" },
-    { value: "2025-08-01", label: "01. August 2025" },
-    { value: "2025-08-02", label: "02. August 2025" },
+    { value: "2025-07-18", label: "18. Juli" },
+    { value: "2025-07-19", label: "19. Juli" },
+    { value: "2025-08-01", label: "01. August" },
+    { value: "2025-08-02", label: "02. August" },
   ];
 
   function handleDateChange(event: React.ChangeEvent<HTMLInputElement>) {
