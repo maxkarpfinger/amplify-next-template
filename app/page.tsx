@@ -69,6 +69,8 @@ export default function App() {
       alert("Mach kein Auge");
     } else if (name.toLocaleLowerCase().includes("janina")) {
       alert("Diesmal musst du kommen, sonst kann ich deine ganzen Freunde (Flo) nicht so gut einladen");
+    } else if (name.toLocaleLowerCase().includes("jazz")) {
+      alert("Einladung gilt nur, wenn du vorher mit zur Metro kommst");
     } else if (name.toLocaleLowerCase().includes("konstantin")) {
       alert("Da lohnt sich jeder Kilometer!");
     } else if (name.toLocaleLowerCase().includes("laura")) {
