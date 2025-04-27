@@ -19,8 +19,8 @@ export default function App() {
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false); // State to track submission
 
   const dates = [
-    { value: "2025-07-18", label: "18. Juli" },
-    { value: "2025-07-19", label: "19. Juli" },
+    { value: "2025-07-11", label: "11. Juli" },
+    { value: "2025-07-12", label: "12. Juli" },
     { value: "2025-08-01", label: "01. August" },
     { value: "2025-08-02", label: "02. August" },
   ];

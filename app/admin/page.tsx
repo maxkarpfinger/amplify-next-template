@@ -19,7 +19,7 @@ Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
 
-type DateKey = "2025-07-18" | "2025-07-19" | "2025-08-01" | "2025-08-02";
+type DateKey = "2025-07-11" | "2025-07-12" | "2025-08-01" | "2025-08-02";
 
 export default function AdminPage() {
   const [users, setUsers] = useState<Array<{ name: string; preferredDates: string, id: string }>>([]);
@@ -27,8 +27,8 @@ export default function AdminPage() {
   // Calculate percentages for each date
   const totalUsers = users.length;
   const dateCounts: Record<DateKey, number> = {
-    "2025-07-18": users.filter((user) => user.preferredDates.includes("2025-07-18")).length,
-    "2025-07-19": users.filter((user) => user.preferredDates.includes("2025-07-19")).length,
+    "2025-07-11": users.filter((user) => user.preferredDates.includes("2025-07-11")).length,
+    "2025-07-12": users.filter((user) => user.preferredDates.includes("2025-07-12")).length,
     "2025-08-01": users.filter((user) => user.preferredDates.includes("2025-08-01")).length,
     "2025-08-02": users.filter((user) => user.preferredDates.includes("2025-08-02")).length,
   };
@@ -94,12 +94,12 @@ export default function AdminPage() {
               <>
                 <div className="charts-container">
                   <div className="chart">
-                    <h3>18. Juli 2025</h3>
-                    <Doughnut data={chartData("2025-07-18")} />
+                    <h3>11. Juli 2025</h3>
+                    <Doughnut data={chartData("2025-07-11")} />
                   </div>
                   <div className="chart">
-                    <h3>19. Juli 2025</h3>
-                    <Doughnut data={chartData("2025-07-19")} />
+                    <h3>12. Juli 2025</h3>
+                    <Doughnut data={chartData("2025-07-12")} />
                   </div>
                   <div className="chart">
                     <h3>01. August 2025</h3>
@@ -114,8 +114,8 @@ export default function AdminPage() {
   <thead>
     <tr>
       <th>Name</th>
-      <th>18. Juli</th>
-      <th>19. Juli</th>
+      <th>11. Juli</th>
+      <th>12. Juli</th>
       <th>01. August</th>
       <th>02. August</th>
       <th>Aktionen</th>
@@ -127,8 +127,8 @@ export default function AdminPage() {
       return (
         <tr key={index}>
           <td>{user.name}</td>
-          <td>{preferredDates.includes("2025-07-18") ? "✔️" : "❌"}</td>
-          <td>{preferredDates.includes("2025-07-19") ? "✔️" : "❌"}</td>
+          <td>{preferredDates.includes("2025-07-11") ? "✔️" : "❌"}</td>
+          <td>{preferredDates.includes("2025-07-12") ? "✔️" : "❌"}</td>
           <td>{preferredDates.includes("2025-08-01") ? "✔️" : "❌"}</td>
           <td>{preferredDates.includes("2025-08-02") ? "✔️" : "❌"}</td>
           <td>
